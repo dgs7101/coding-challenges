@@ -103,3 +103,31 @@ fast,slowを使った実装は、Hare-Tortoise algorithm(Floyd’s Cycle Finding
 
 ## step3
 setでの実装の方が基礎的な問題なので、こちらの実装で進めた。
+
+
+## 指摘を受けて修正したコード
+
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool hasCycle(ListNode* head) {
+        std::set<ListNode*> visited;
+        ListNode* node = head;
+        while (node != nullptr) {
+            if (visited.contains(node)) {
+                return true;
+            }
+            visited.insert(node);
+            node = node->next;
+        }
+        return false;
+    }
+};
